@@ -91,9 +91,17 @@ export default {
   height: 80px;
   font-size: 23px;
   font-weight: bold;
+
+  overflow: hidden;
 }
 
 .content-grid-item .title.hovered {
   color: rgba(255, 255, 255, 0.637);
+}
+
+@media all and (max-width: 1024px) {
+  .content-grid-item .title {
+    font-size: 18px;
+  }
 }
 </style>
