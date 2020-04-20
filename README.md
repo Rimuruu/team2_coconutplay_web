@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Pitaya Play
 
 Exercice pratique du cours 8
@@ -25,3 +26,7 @@ Puis, vous rendre à l'adresse suivante :
 ```
 http:/localhost:8080
 ```
+=======
+# team2_coconutplay_web
+
+>>>>>>> 7a37e673d91954f2d549a3121efda7ec3a32a141
