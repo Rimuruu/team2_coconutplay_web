@@ -5,6 +5,7 @@ import Vuex from "vuex";
 import gameTest from "@/store/modules/gameTest";
 import category from "@/store/modules/category";
 import comment from "@/store/modules/comment";
+import account from "@/store/modules/account";
 
 Vue.use(Vuex);
 
@@ -13,5 +14,6 @@ export default new Vuex.Store({
     gameTest,
     category,
     comment,
+    account,
   },
 });

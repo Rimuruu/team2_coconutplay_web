@@ -7,6 +7,7 @@
       <router-link :to="{ name: 'newTest' }">
         NOUVEAU TEST
       </router-link>
+      <router-link :to="{ name: 'login' }"> LOGIN </router-link>
     </div>
     <!--div class="user">US</div-->
   </div>
@@ -15,6 +16,12 @@
 <script>
 export default {
   name: "HeaderMenu",
+  methods:{
+    test(){
+      this.$store.dispatch("account/login",{username:"antoine",password:"1234"})
+      console.log(this.$store.state.account.user);
+    }
+  }
 };
 </script>
 
