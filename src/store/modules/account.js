@@ -34,14 +34,53 @@ const actions = {
                         token : response.data
                     }
                     commit("setLogin",{user});
+                  
                 
             })
                 .catch(function(error){
                     console.error(error);
+                  
                 })
 
         }catch(e){
             console.error(e);
+           
+        }
+    },
+
+    async register({commit},{username,password,email,name,surname}){
+        console.log("log actions")
+        try{
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    username : username,
+                    password : password,
+                    email:email,
+                    name:name,
+                    surname:surname,
+                    role:"user,"
+                }
+              };
+            axios.post(`${HOST}:${PORT}/register`,null,axiosConfig)
+                .then(function (response){
+                    console.log(response)
+                    const user = {
+                        token : response.data
+                    }
+                    commit("setLogin",{user});
+                  
+                
+            })
+                .catch(function(error){
+                    console.error(error);
+                  
+                })
+
+        }catch(e){
+            console.error(e);
+           
         }
     }
   

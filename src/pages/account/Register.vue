@@ -21,7 +21,37 @@
           name="name"
           placeholder="Password"
         />
-        <label v-if="loged" for="name"  id="label-name">Vous êtes connecté ! </label>
+        <label for="name"  id="label-name">Email : </label>
+        <input
+          v-model="email"
+          required
+          maxlength="50"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Email"
+        />
+        <label for="name"  id="label-name">Nom : </label>
+        <input
+          v-model="name"
+          required
+          maxlength="50"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Nom"
+        />
+        <label for="name"  id="label-name">Prénom : </label>
+        <input
+          v-model="surname"
+          required
+          maxlength="50"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Prenom"
+        />
+        <label v-if="loged" for="name"  id="label-name">Vous êtes inscrit ! </label>
 
      
        
@@ -34,11 +64,14 @@
 
 <script>
 export default {
-  name: "LoginPage",
+  name: "RegisterPage",
   data() {
     return {
       username : "",
       password : "",
+      email : "",
+      name : "",
+      surname : "",
       token : "",
     }
 
@@ -58,10 +91,11 @@ export default {
   methods :  {
     async send(e){
       console.log("send");
-      if(this.username != "" || this.password != ""){
-        var response = await this.$store.dispatch("account/login",{username:this.username,password:this.password});
+      if(this.username != "" || this.password != "" || this.email != ""){
+        var response = await this.$store.dispatch("account/register",{username:this.username,password:this.password,email:this.email,name:this.name,surname:this.surname});
         
         }
+      
       
     }
   }

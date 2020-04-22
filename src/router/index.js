@@ -6,6 +6,7 @@ import NewTest from "@/pages/newTest/Index.vue";
 import Category from "@/pages/category/Index.vue";
 import News from "@/pages/news/Index.vue";
 import LoginPage from "@/pages/account/Login.vue";
+import RegisterPage from "@/pages/account/Register.vue";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginPage,
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: RegisterPage,
   },
 ];
 
