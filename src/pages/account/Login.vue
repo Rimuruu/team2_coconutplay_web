@@ -16,12 +16,13 @@
           v-model="password"
           required
           maxlength="50"
-          type="text"
+          type="password"
           id="name"
           name="name"
           placeholder="Password"
         />
         <label v-if="loged" for="name"  id="label-name">Vous êtes connecté ! </label>
+        <label  for="name"  id="label-name">{{status}}</label>
 
      
        
@@ -40,6 +41,7 @@ export default {
       username : "",
       password : "",
       token : "",
+      status : "",
     }
 
   },
@@ -57,11 +59,18 @@ export default {
   },
   methods :  {
     async send(e){
-      console.log("send");
-      if(this.username != "" || this.password != ""){
-        var response = await this.$store.dispatch("account/login",{username:this.username,password:this.password});
-        
+   
+      if(this.username != "" && this.password != ""){
+        this.$store.dispatch("account/login",{username:this.username,password:this.password}).then(function(response){
+          
+        }).catch(function(err){
+          console.log(err);
+        })
+        this.status = this.$store.state.account.status;
+        this.$store.state.account.status = "";
         }
+        else{
+          this.status = "Veuillez compléter les champs obligatoires"}
       
     }
   }

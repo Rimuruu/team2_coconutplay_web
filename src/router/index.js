@@ -7,6 +7,7 @@ import Category from "@/pages/category/Index.vue";
 import News from "@/pages/news/Index.vue";
 import LoginPage from "@/pages/account/Login.vue";
 import RegisterPage from "@/pages/account/Register.vue";
+import ProfilePage from "@/pages/account/Profile.vue";
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,11 @@ const routes = [
     path: "/register",
     name: "register",
     component: RegisterPage,
+  },
+  {
+    path: "/profile/me",
+    name: "profile",
+    component: ProfilePage,
   },
 ];
 

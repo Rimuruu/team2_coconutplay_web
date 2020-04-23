@@ -6,12 +6,26 @@ const PORT = 3000;
 const state = {
     user :{
         token: "",
-    }
+        
+    },
+    info:{
+        username:"d",
+        email:"d",
+        name:"d",
+        surname:"d",
+    },
+    status:"",
 };
 
 const mutations = {
     setLogin(state,{user}){
         state.user = user;
+    },
+    setStatut(state,stat){
+        state.status = stat;
+    },
+    setInfo(state,{info}){
+        state.info = info;
     }
 };
 
@@ -27,7 +41,7 @@ const actions = {
                     password : password,
                 }
               };
-            axios.get(`${HOST}:${PORT}/login`,axiosConfig)
+            return axios.get(`${HOST}:${PORT}/login`,axiosConfig)
                 .then(function (response){
                     console.log(response)
                     const user = {
@@ -39,12 +53,12 @@ const actions = {
             })
                 .catch(function(error){
                     console.error(error);
+                    if(error.response.status==404)commit("setStatut","Le compte n'existe pas");
                   
                 })
 
         }catch(e){
             console.error(e);
-           
         }
     },
 
@@ -75,6 +89,40 @@ const actions = {
             })
                 .catch(function(error){
                     console.error(error);
+                    
+                  
+                })
+
+        }catch(e){
+            console.error(e);
+            
+           
+        }
+    },
+    async logout({commit},{}){
+        console.log("logout")
+        try{
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    "authorization" : "Bearer "+ state.user.token,
+                    
+                }
+              };
+            axios.get(`${HOST}:${PORT}/logout`,axiosConfig)
+                .then(function (response){
+                    console.log(response)
+                    const user = {
+                        token : "",
+                    }
+                    commit("setLogin",{user});
+                  
+                
+            })
+                .catch(function(error){
+                    console.error(error);
+                    
                   
                 })
 
@@ -82,6 +130,43 @@ const actions = {
             console.error(e);
            
         }
+    },
+    async profileMe({commit},{}){
+        console.log("profile")
+        try{
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    "authorization" : "Bearer "+ state.user.token,
+                    
+                }
+              };
+            axios.get(`${HOST}:${PORT}/profile/me`,axiosConfig)
+                .then(function (response){
+                    console.log(response)
+                    const info = {
+                        username:response.data.username,
+                        email:response.data.email,
+                        name:response.data.name,
+                        surname:response.data.surname,
+                    }
+                    commit("setInfo",{info});
+                  
+                
+            })
+                .catch(function(error){
+                    console.error(error);
+                    
+                  
+                })
+
+        }catch(e){
+            console.error(e);
+           
+        }
+
+
     }
   
 };
