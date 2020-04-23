@@ -51,6 +51,16 @@
           name="name"
           placeholder="Prenom"
         />
+        <label for="name"  id="label-name">Date de naissance: </label>
+        <input
+          v-model="birthdate"
+          required
+          maxlength="50"
+          type="date"
+          id="name"
+          name="name"
+        
+        />
         <label v-if="loged" for="name"  id="label-name">Vous êtes inscrit ! </label>
 
      
@@ -73,6 +83,7 @@ export default {
       name : "",
       surname : "",
       token : "",
+      birthdate:"",
     }
 
   },
@@ -92,7 +103,7 @@ export default {
     async send(e){
       console.log("send");
       if(this.username != "" || this.password != "" || this.email != ""){
-        var response = await this.$store.dispatch("account/register",{username:this.username,password:this.password,email:this.email,name:this.name,surname:this.surname});
+        var response = await this.$store.dispatch("account/register",{username:this.username,password:this.password,email:this.email,name:this.name,surname:this.surname,birthdate:this.birthdate});
         
         }
       

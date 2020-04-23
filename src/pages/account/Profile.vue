@@ -4,6 +4,7 @@
      <label>{{email}}</label>    
      <label>{{surname}}</label>
      <label>{{name}}</label>
+     <label>{{birthdate.toString()}}</label>
 
   </div>
 </template>
@@ -13,13 +14,50 @@ export default {
   name: "ProfilePage",
   data() {
     return {
-      username : "",
-      email : "",
-      name : "",
-      surname : "",
+      
       token : ""
     }
 
+  },
+  computed:{
+    username(){
+      if(this.$store.state.account.info.username != ""){
+          let username = this.$store.state.account.info.username;
+          this.$store.state.account.info.username="";
+          return username;}
+        return "";
+    },
+    email(){
+      if(this.$store.state.account.info.email != ""){
+          let email = this.$store.state.account.info.email;
+          this.$store.state.account.info.email="";
+          return email;}
+        return "";
+         
+    },
+    name(){
+      if(this.$store.state.account.info.name != ""){
+          let name = this.$store.state.account.info.name;
+          this.$store.state.account.info.name="";
+          return name;}
+        return "";
+    },
+    surname(){
+      if(this.$store.state.account.info.surname != ""){
+          let surname = this.$store.state.account.info.surname;
+          this.$store.state.account.info.surname="";
+          return surname;}
+        return "";
+    },
+    birthdate(){
+      if(this.$store.state.account.info.birthdate != ""){
+          let birthdate = this.$store.state.account.info.birthdate;
+          this.$store.state.account.info.birthdate="";
+          return birthdate;}
+        return "";
+    },
+   
+    
   },
   methods:{
     async getInfo(){
@@ -29,10 +67,7 @@ export default {
       }
       else{
           await this.$store.dispatch("account/profileMe",{})
-          this.username = this.$store.state.account.info.username;
-          this.email = this.$store.state.account.info.email ;
-          this.name = this.$store.state.account.info.name;
-          this.surname = this.$store.state.account.info.surname;
+          
       }
     }
   },

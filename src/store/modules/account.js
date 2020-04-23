@@ -9,10 +9,11 @@ const state = {
         
     },
     info:{
-        username:"d",
-        email:"d",
-        name:"d",
-        surname:"d",
+        username:"",
+        email:"",
+        name:"",
+        surname:"",
+        birthdate:"",
     },
     status:"",
 };
@@ -62,7 +63,7 @@ const actions = {
         }
     },
 
-    async register({commit},{username,password,email,name,surname}){
+    async register({commit},{username,password,email,name,surname,birthdate}){
         console.log("log actions")
         try{
             let axiosConfig = {
@@ -74,7 +75,8 @@ const actions = {
                     email:email,
                     name:name,
                     surname:surname,
-                    role:"user,"
+                    role:"user",
+                    birthdate:birthdate,
                 }
               };
             axios.post(`${HOST}:${PORT}/register`,null,axiosConfig)
@@ -150,6 +152,7 @@ const actions = {
                         email:response.data.email,
                         name:response.data.name,
                         surname:response.data.surname,
+                        birthdate:response.data.birthdate,
                     }
                     commit("setInfo",{info});
                   
