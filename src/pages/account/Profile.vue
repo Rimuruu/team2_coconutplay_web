@@ -1,10 +1,11 @@
 <template>
   <div class="new-test">
-     <label>{{username}}</label>
-     <label>{{email}}</label>    
-     <label>{{surname}}</label>
-     <label>{{name}}</label>
-     <label>{{birthdate.toString()}}</label>
+     <label>Nom de compte : {{username}}</label>
+     <label>Email : {{email}}</label>    
+     <label>Prénom : {{surname}}</label>
+     <label>Nom : {{name}}</label>
+     <label>Date de naissance : {{birthdate.toString()}}</label>
+     <label>Role : {{role}}</label>
 
   </div>
 </template>
@@ -56,6 +57,13 @@ export default {
           return birthdate;}
         return "";
     },
+    role(){
+      if(this.$store.state.account.info.role != ""){
+          let role = this.$store.state.account.info.role;
+          this.$store.state.account.info.role="";
+          return role;}
+        return "";
+    },
    
     
   },
@@ -72,7 +80,7 @@ export default {
     }
   },
   mounted(){
-      this.getInfo();
+    this.getInfo();
   }
       
       

@@ -6,6 +6,7 @@ const PORT = 3000;
 const state = {
     user :{
         token: "",
+        role:"",
         
     },
     info:{
@@ -14,6 +15,7 @@ const state = {
         name:"",
         surname:"",
         birthdate:"",
+        role:"",
     },
     status:"",
 };
@@ -46,7 +48,8 @@ const actions = {
                 .then(function (response){
                     console.log(response)
                     const user = {
-                        token : response.data
+                        token : response.data.token,
+                        role : response.data.role
                     }
                     commit("setLogin",{user});
                   
@@ -83,7 +86,8 @@ const actions = {
                 .then(function (response){
                     console.log(response)
                     const user = {
-                        token : response.data
+                        token : response.data.token,
+                        role : response.data.role
                     }
                     commit("setLogin",{user});
                   
@@ -153,6 +157,7 @@ const actions = {
                         name:response.data.name,
                         surname:response.data.surname,
                         birthdate:response.data.birthdate,
+                        role:response.data.role,
                     }
                     commit("setInfo",{info});
                   

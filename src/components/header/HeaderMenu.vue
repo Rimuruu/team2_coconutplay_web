@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'home' }">
         HOME
       </router-link>
-      <router-link :to="{ name: 'newTest' }">
+      <router-link v-if="isAdmin==true" :to="{ name: 'newTest' }">
         NOUVEAU TEST
       </router-link>
       <router-link v-if="isLog==false" :to="{ name: 'login' }"> LOGIN </router-link>
@@ -23,12 +23,18 @@ export default {
     isLog(){
       if(this.$store.state.account.user.token != "")return true;
       return false;
+    },
+    isAdmin(){
+      if(this.$store.state.account.user.role == "admin")return true;
+      return false;
     }
   },
   methods:{
     send(e){
       this.$store.dispatch("account/logout",{});
-      this.$router.push({ name: "home" });
+      if(this.$route.name != "home"){
+        this.$router.push({ name: "home" });
+        }
     }
   }
 
@@ -53,7 +59,6 @@ export default {
 .header-menu > .links a {
   margin-left: 10px;
   margin-right: 10px;
-
   font-size: 20px;
 }
 </style>
