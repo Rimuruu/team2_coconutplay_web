@@ -6,7 +6,7 @@
         <label for="name" id="label-name">Nom : </label>
         <input
           required
-          v-model="game.game"
+          v-model="game.name"
           maxlength="50"
           type="text"
           id="name"
@@ -60,7 +60,7 @@
         <label for="write-test">Rédaction du test :</label>
         <textarea
           required
-          v-model="game.text"
+          v-model="game.content"
           id="write-test"
           name="write-test"
           rows="15"
@@ -71,6 +71,11 @@
         <label for="grade" id="label-grade">Note : </label>
         <select required v-model="game.grade" id="grade" name="grade">
           <option v-for="i in 100" :key="i" :value="i">{{ i }}</option>
+        </select>
+        <label id="label-grade">Visibilité : </label>
+        <select required v-model="game.visibility" id="visibility" name="visibility">
+          <option value="public">Public</option>
+          <option value="private">Private</option>
         </select>
       </fieldset>
     </div>
@@ -85,13 +90,14 @@ export default {
   data() {
     return {
       game: {
-        text: "",
-        author: "",
-        game: "",
-        title: "",
-        imageUrl: "",
+        content: null,
+        author: null,
+        name: null,
+        title: null,
+        imageUrl: null,
         category: null,
-        grade: "",
+        grade: null,
+        visibility:"public",
       },
     };
   },
@@ -105,7 +111,7 @@ export default {
   },
   methods: {
     async send(e) {
-      if (this.game.category) {
+      if (!this.game.category) {
         this.game.category = this.categories[0];
       }
 

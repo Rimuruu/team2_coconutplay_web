@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="container">
-      <HeaderLogo img="pitaya_logo" />
+      <HeaderLogo img="coconut_logo" />
       <HeaderMenu />
     </div>
   </div>

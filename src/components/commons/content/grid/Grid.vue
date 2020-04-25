@@ -6,6 +6,8 @@
         :bannerPath="getImageUrl(game.bannerPath || {})"
         :title="game.title"
         :grade="game.grade"
+        :visibility="game.visibility"
+     
       />
     </div>
   </div>
@@ -22,6 +24,7 @@ export default {
   props: {
     games: Array,
   },
+  
   methods: {
     getImageUrl({ download_url }) {
       return download_url;

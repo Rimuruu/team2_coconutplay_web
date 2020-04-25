@@ -11,17 +11,15 @@
           name="name"
           placeholder="Nom du compte"
         />
-        <label for="name"  id="label-name">Password : </label>
-        <input
-          v-model="password"
-          required
-          maxlength="50"
-          type="password"
-          id="name"
-          name="name"
-          placeholder="Password"
-        />
-        <label v-if="loged" for="name"  id="label-name">Vous êtes connecté ! </label>
+        <label for="category">Rôle : </label>
+        <select v-model="role" id="role" name="role">
+          <option  value="admin">
+            Admin
+          </option>
+          <option selected value="user">
+            User
+          </option>
+          </select>
         <label  for="name"  id="label-name">{{status}}</label>
 
      
@@ -29,37 +27,29 @@
          
     
 
-    <a v-if="loged == false" href="#" @click="send">Envoyer</a>
+    <a  href="#" @click="send">Envoyer</a>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LoginPage",
+  name: "AdminPage",
   data() {
     return {
       username : "",
-      password : "",
+      role: "user",
       token : "",
-      
+      status : "",
     }
 
   },
   computed : {
-    loged(){
-      this.token = this.$store.state.account.user.token;
-      console.log("token "+ this.token);
-      if(this.token != ""){
+    isAdmin(){
+      if(this.$store.state.account.user.role == "admin")return true;
+      if(this.$route.name != "home"){
         this.$router.push({ name: "home" });
-        return true;
-        
-      }
+        }
       return false;
-    },
-    status() {
-      let status = this.$store.state.account.status;
-      this.$store.state.account.status = "";
-      return status;
     }
   },
   methods :  {
@@ -71,12 +61,16 @@ export default {
         }).catch(function(err){
           console.log(err);
         })
-        
+        this.status = this.$store.state.account.status;
+        this.$store.state.account.status = "";
         }
         else{
-          this.$store.state.account.status = "Veuillez compléter les champs obligatoires"}
+          this.status = "Veuillez compléter les champs obligatoires"}
       
     }
+  },
+  mounted() {
+      this.isAdmin;
   }
 };
 </script>

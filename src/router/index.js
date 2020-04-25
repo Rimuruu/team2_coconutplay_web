@@ -8,6 +8,7 @@ import News from "@/pages/news/Index.vue";
 import LoginPage from "@/pages/account/Login.vue";
 import RegisterPage from "@/pages/account/Register.vue";
 import ProfilePage from "@/pages/account/Profile.vue";
+import AdminPage from "@/pages/account/Admin.vue";
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const routes = [
     path: "/profile/me",
     name: "profile",
     component: ProfilePage,
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    component: AdminPage,
   },
 ];
 

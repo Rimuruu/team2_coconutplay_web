@@ -4,14 +4,18 @@
     @mouseover="isHover = true"
     @mouseleave="isHover = false"
     @click="goToNews"
+    v-if="isAccessible"
   >
     <div class="image" :style="applyCustomStyle">
       <div class="grade">{{ grade }}</div>
       <div v-if="isHover" class="overlay"></div>
+      <img class="cadena" v-if="visibility == 'private'"  :src="require(`@/assets/cadenalogo.png`)" alt="cadena" />
     </div>
     <div :class="`title ${isHover ? 'hovered' : ''}`">
       {{ title }}
+      
     </div>
+    
   </div>
 </template>
 
@@ -23,6 +27,7 @@ export default {
     title: String,
     grade: Number,
     bannerPath: String,
+    visibility: String,
   },
   data() {
     return {
@@ -40,6 +45,12 @@ export default {
     applyCustomStyle() {
       return this.imageStyle;
     },
+    isAccessible(){
+      if(this.$store.state.account.user.token != "" && this.visibility == "private")return true;
+      if(this.visibility == "public")return true;
+      return false;
+    },
+  
   },
 
   methods: {
@@ -59,6 +70,7 @@ export default {
 .content-grid-item:hover {
   cursor: pointer;
 }
+
 
 .content-grid-item .image {
   background-position: center;
@@ -97,6 +109,12 @@ export default {
 
 .content-grid-item .title.hovered {
   color: rgba(255, 255, 255, 0.637);
+}
+
+.cadena{
+  position: absolute;
+
+  top: 0px;
 }
 
 @media all and (max-width: 1024px) {

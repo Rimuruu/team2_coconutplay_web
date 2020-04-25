@@ -62,6 +62,7 @@
         
         />
         <label v-if="loged" for="name"  id="label-name">Vous êtes inscrit ! </label>
+        <label for="name"  id="label-name">{{status}} </label>
 
      
        
@@ -97,6 +98,11 @@ export default {
         
       }
       return false;
+    },
+    status() {
+      let status = this.$store.state.account.status;
+      this.$store.state.account.status = "";
+      return status;
     }
   },
   methods :  {
@@ -105,6 +111,8 @@ export default {
       if(this.username != "" || this.password != "" || this.email != ""){
         var response = await this.$store.dispatch("account/register",{username:this.username,password:this.password,email:this.email,name:this.name,surname:this.surname,birthdate:this.birthdate});
         
+        }else{
+          this.$store.state.account.status = "Veuillez remplir les champs obligatoires"
         }
       
       

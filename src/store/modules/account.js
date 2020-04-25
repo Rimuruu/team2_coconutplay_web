@@ -175,6 +175,37 @@ const actions = {
         }
 
 
+    },
+    async modifyRole({commit},{username,role}){
+        console.log("profile")
+        try{
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                    "authorization" : "Bearer "+ state.user.token,
+                    
+                }
+              };
+            axios.put(`${HOST}:${PORT}/profile/${username}`,{role:role},axiosConfig)
+                .then(function (response){
+                    console.log(response)
+                    
+                  
+                
+            })
+                .catch(function(error){
+                    console.error(error);
+                    
+                  
+                })
+
+        }catch(e){
+            console.error(e);
+           
+        }
+
+
     }
   
 };

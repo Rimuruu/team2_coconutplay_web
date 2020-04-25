@@ -7,6 +7,9 @@
       <router-link v-if="isAdmin==true" :to="{ name: 'newTest' }">
         NOUVEAU TEST
       </router-link>
+      <router-link v-if="isAdmin==true" :to="{ name: 'admin' }">
+        ADMINISTRER
+      </router-link>
       <router-link v-if="isLog==false" :to="{ name: 'login' }"> LOGIN </router-link>
       <router-link v-if="isLog==false" :to="{ name: 'register' }"> REGISTER </router-link>
        <router-link v-if="isLog==true" :to="{ name: 'profile' }"> PROFILE </router-link>

@@ -1,7 +1,7 @@
 <template>
   <div class="header-logo" @click="redirectToHome">
     <img :src="require(`@/assets/${img}.png`)" alt="logo" />
-    PITAYA PLAY
+    COCONUT PLAY
   </div>
 </template>
 
