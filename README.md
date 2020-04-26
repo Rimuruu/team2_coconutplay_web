@@ -4,8 +4,11 @@
 Projet de Fin de session
 
 Antoine Renciot
+
 Rémi Barbier
+
 Romain Lechartier
+
 
 ### Installation
 
