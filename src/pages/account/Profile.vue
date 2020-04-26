@@ -4,7 +4,7 @@
      <label>Email : {{ email }}</label>    
      <label>Prénom : {{ surname }}</label>
      <label>Nom : {{ name }}</label>
-     <label>Date de naissance : {{ birthdate.toString() }}</label>
+     <label>Date de naissance : {{ birthdate }}</label>
      <label>Role : {{ role }}</label>
 </div>
 </template>
