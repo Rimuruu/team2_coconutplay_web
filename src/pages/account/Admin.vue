@@ -1,7 +1,11 @@
+
+
 <template>
   <div class="new-test">
-    
-        <label for="name" id="label-name">Username : </label>
+<label
+for="name"
+class="label-name"
+>Username : </label>
         <input
           v-model="username"
           required
@@ -10,28 +14,42 @@
           id="name"
           name="name"
           placeholder="Nom du compte"
-        />
+        >
         <label for="category">Rôle : </label>
-        <select v-model="role" id="role" name="role">
-          <option  value="admin">
+        <select
+v-model="role"
+id="role"
+name="role"
+>
+          <option value="admin">
             Admin
           </option>
-          <option selected value="user">
+          <option
+selected
+value="user"
+>
             User
           </option>
           </select>
-        <label  for="name"  id="label-name">{{status}}</label>
+        <label
+for="name"
+class="label-name"
+>{{ status }}</label>
 
      
        
          
     
 
-    <a  href="#" @click="send">Envoyer</a>
+    <a
+href="#"
+@click="send"
+>Envoyer</a>
   </div>
 </template>
 
 <script>
+/* eslint-disable*/
 export default {
   name: "AdminPage",
   data() {
@@ -39,7 +57,6 @@ export default {
       username : "",
       role: "user",
       token : "",
-      status : "",
     }
 
   },
@@ -50,27 +67,31 @@ export default {
         this.$router.push({ name: "home" });
         }
       return false;
-    }
-  },
-  methods :  {
-    async send(e){
-   
-      if(this.username != "" && this.password != ""){
-        this.$store.dispatch("account/login",{username:this.username,password:this.password}).then(function(response){
-          
-        }).catch(function(err){
-          console.log(err);
-        })
-        this.status = this.$store.state.account.status;
-        this.$store.state.account.status = "";
-        }
-        else{
-          this.status = "Veuillez compléter les champs obligatoires"}
-      
+    },
+    status() {
+      let status = this.$store.state.account.status;
+      this.$store.state.account.status = "";
+      return status;
     }
   },
   mounted() {
       this.isAdmin;
+  },
+  methods :  {
+    async send(e){
+   
+      if(this.username != ""){
+        this.$store.dispatch("account/modifyRole",{username:this.username,role:this.role}).then(function(response){
+          
+        }).catch(function(err){
+        
+        })
+     
+        }
+        else{
+          this.$store.state.account.status = "Veuillez compléter les champs obligatoires"}
+      
+    }
   }
 };
 </script>

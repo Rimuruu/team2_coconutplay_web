@@ -1,13 +1,12 @@
 <template>
   <div class="new-test">
-     <label>Nom de compte : {{username}}</label>
-     <label>Email : {{email}}</label>    
-     <label>Prénom : {{surname}}</label>
-     <label>Nom : {{name}}</label>
-     <label>Date de naissance : {{birthdate.toString()}}</label>
-     <label>Role : {{role}}</label>
-
-  </div>
+     <label>Nom de compte : {{ username }}</label>
+     <label>Email : {{ email }}</label>    
+     <label>Prénom : {{ surname }}</label>
+     <label>Nom : {{ name }}</label>
+     <label>Date de naissance : {{ birthdate.toString() }}</label>
+     <label>Role : {{ role }}</label>
+</div>
 </template>
 
 <script>
@@ -67,6 +66,9 @@ export default {
    
     
   },
+  mounted(){
+    this.getInfo();
+  },
   methods:{
     async getInfo(){
       this.token = this.$store.state.account.user.token;
@@ -78,9 +80,6 @@ export default {
           
       }
     }
-  },
-  mounted(){
-    this.getInfo();
   }
       
       

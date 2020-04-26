@@ -1,5 +1,5 @@
 import axios from "axios";
-
+/* eslint-disable*/
 const HOST = "http://localhost";
 const PORT = 3000;
 
@@ -34,7 +34,7 @@ const mutations = {
 
 const actions = {
     async login({commit},{username,password}){
-        console.log("log actions")
+
         try{
             let axiosConfig = {
                 headers: {
@@ -46,7 +46,7 @@ const actions = {
               };
             return axios.get(`${HOST}:${PORT}/login`,axiosConfig)
                 .then(function (response){
-                    console.log(response)
+            
                     const user = {
                         token : response.data.token,
                         role : response.data.role
@@ -56,18 +56,18 @@ const actions = {
                 
             })
                 .catch(function(error){
-                    console.error(error);
+               
                     if(error.response.status==404)commit("setStatut","Le compte n'existe pas");
                   
                 })
 
         }catch(e){
-            console.error(e);
+        
         }
     },
 
     async register({commit},{username,password,email,name,surname,birthdate}){
-        console.log("log actions")
+    
         try{
             let axiosConfig = {
                 headers: {
@@ -84,7 +84,7 @@ const actions = {
               };
             axios.post(`${HOST}:${PORT}/register`,null,axiosConfig)
                 .then(function (response){
-                    console.log(response)
+          
                     const user = {
                         token : response.data.token,
                         role : response.data.role
@@ -94,19 +94,19 @@ const actions = {
                 
             })
                 .catch(function(error){
-                    console.error(error);
+              
                     
                   
                 })
 
         }catch(e){
-            console.error(e);
-            
+      
+            if(error.response.status==403)commit("setStatut","Les informations utilisé existe déjà");
            
         }
     },
     async logout({commit},{}){
-        console.log("logout")
+    
         try{
             let axiosConfig = {
                 headers: {
@@ -118,27 +118,28 @@ const actions = {
               };
             axios.get(`${HOST}:${PORT}/logout`,axiosConfig)
                 .then(function (response){
-                    console.log(response)
+           
                     const user = {
                         token : "",
+                        role:"",
                     }
                     commit("setLogin",{user});
                   
                 
             })
                 .catch(function(error){
-                    console.error(error);
+          
                     
                   
                 })
 
         }catch(e){
-            console.error(e);
+     
            
         }
     },
     async profileMe({commit},{}){
-        console.log("profile")
+ 
         try{
             let axiosConfig = {
                 headers: {
@@ -150,7 +151,7 @@ const actions = {
               };
             axios.get(`${HOST}:${PORT}/profile/me`,axiosConfig)
                 .then(function (response){
-                    console.log(response)
+    
                     const info = {
                         username:response.data.username,
                         email:response.data.email,
@@ -164,20 +165,18 @@ const actions = {
                 
             })
                 .catch(function(error){
-                    console.error(error);
+              
                     
                   
                 })
 
         }catch(e){
-            console.error(e);
-           
-        }
+            }
 
 
     },
     async modifyRole({commit},{username,role}){
-        console.log("profile")
+    
         try{
             let axiosConfig = {
                 headers: {
@@ -189,20 +188,18 @@ const actions = {
               };
             axios.put(`${HOST}:${PORT}/profile/${username}`,{role:role},axiosConfig)
                 .then(function (response){
-                    console.log(response)
-                    
+         
+                    commit("setStatut","Role modifié");
                   
                 
             })
                 .catch(function(error){
-                    console.error(error);
-                    
+                    if(error.response.status==404)commit("setStatut","Le compte existe pas");
                   
                 })
 
         }catch(e){
-            console.error(e);
-           
+            
         }
 
 

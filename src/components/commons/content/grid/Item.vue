@@ -6,17 +6,28 @@
     @click="goToNews"
     v-if="isAccessible"
   >
-    <div class="image" :style="applyCustomStyle">
-      <div class="grade">{{ grade }}</div>
-      <div v-if="isHover" class="overlay"></div>
-      <img class="cadena" v-if="visibility == 'private'"  :src="require(`@/assets/cadenalogo.png`)" alt="cadena" />
+    <div
+class="image"
+:style="applyCustomStyle"
+>
+      <div class="grade">
+{{ grade }}
+</div>
+      <div
+v-if="isHover"
+class="overlay"
+/>
+    <img
+class="cadena"
+v-if="visibility == 'private'"
+:src="require(`@/assets/cadenalogo.png`)"
+alt="cadena"
+>
     </div>
     <div :class="`title ${isHover ? 'hovered' : ''}`">
       {{ title }}
-      
-    </div>
-    
-  </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -43,6 +54,7 @@ export default {
       return { "background-color": "red" };
     },
     applyCustomStyle() {
+
       return this.imageStyle;
     },
     isAccessible(){

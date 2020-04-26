@@ -1,6 +1,12 @@
 <template>
-  <div class="header-logo" @click="redirectToHome">
-    <img :src="require(`@/assets/${img}.png`)" alt="logo" />
+  <div
+class="header-logo"
+@click="redirectToHome"
+>
+    <img
+:src="require(`@/assets/${img}.png`)"
+alt="logo"
+>
     COCONUT PLAY
   </div>
 </template>

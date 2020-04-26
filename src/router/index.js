@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Home from "@/pages/home/Index.vue";
 import NewTest from "@/pages/newTest/Index.vue";
 import Category from "@/pages/category/Index.vue";
+import PrivatePage from "@/pages/category/Private.vue";
 import News from "@/pages/news/Index.vue";
 import LoginPage from "@/pages/account/Login.vue";
 import RegisterPage from "@/pages/account/Register.vue";
@@ -52,6 +53,11 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: AdminPage,
+  },
+  {
+    path: "/private",
+    name: "private",
+    component: PrivatePage,
   },
 ];
 

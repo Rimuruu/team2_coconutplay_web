@@ -1,14 +1,17 @@
 <template>
   <div class="content-grid">
-    <div class="item" v-for="game in games" v-bind:key="game.id">
+    <div
+class="item"
+v-for="game in games"
+v-bind:key="game.id"
+>
       <Item
         :id="game.id"
         :bannerPath="getImageUrl(game.bannerPath || {})"
         :title="game.title"
         :grade="game.grade"
         :visibility="game.visibility"
-     
-      />
+/>
     </div>
   </div>
 </template>

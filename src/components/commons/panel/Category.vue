@@ -8,6 +8,13 @@
     >
       {{ category.toUpperCase() }}
     </div>
+    <div
+v-if="isLog"
+class="item"
+@click="goToPrivate()"
+>
+PRIVATE
+</div>
   </div>
 </template>
 
@@ -17,10 +24,20 @@ export default {
   props: {
     categories: Array,
   },
+  computed:{
+    isLog(){
+      if(this.$store.state.account.user.token != "")return true;
+      return false;
+    },
+  },
   methods: {
     goToCategory(category) {
       this.$router.push({ name: "category", params: { category } });
     },
+    goToPrivate() {
+      this.$router.push({ name: "private" });
+    },
+    
   },
 };
 </script>

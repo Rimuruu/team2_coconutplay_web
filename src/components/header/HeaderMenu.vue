@@ -1,19 +1,44 @@
+
 <template>
   <div class="header-menu">
     <div class="links">
       <router-link :to="{ name: 'home' }">
         HOME
       </router-link>
-      <router-link v-if="isAdmin==true" :to="{ name: 'newTest' }">
+      <router-link
+v-if="isAdmin==true"
+:to="{ name: 'newTest' }"
+>
         NOUVEAU TEST
       </router-link>
-      <router-link v-if="isAdmin==true" :to="{ name: 'admin' }">
+      <router-link
+v-if="isAdmin==true"
+:to="{ name: 'admin' }"
+>
         ADMINISTRER
       </router-link>
-      <router-link v-if="isLog==false" :to="{ name: 'login' }"> LOGIN </router-link>
-      <router-link v-if="isLog==false" :to="{ name: 'register' }"> REGISTER </router-link>
-       <router-link v-if="isLog==true" :to="{ name: 'profile' }"> PROFILE </router-link>
-      <a @click="send" v-if="isLog==true"> LOGOUT </a>
+      <router-link
+v-if="isLog==false"
+:to="{ name: 'login' }"
+>
+LOGIN
+</router-link>
+      <router-link
+v-if="isLog==false"
+:to="{ name: 'register' }"
+>
+REGISTER
+</router-link>
+       <router-link
+v-if="isLog==true"
+:to="{ name: 'profile' }"
+>
+PROFILE
+</router-link>
+      <a
+@click="send"
+v-if="isLog==true"
+> LOGOUT </a>
     </div>
     <!--div class="user">US</div-->
   </div>
@@ -33,6 +58,7 @@ export default {
     }
   },
   methods:{
+    // eslint-disable-next-line no-unused-vars
     send(e){
       this.$store.dispatch("account/logout",{});
       if(this.$route.name != "home"){

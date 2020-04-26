@@ -1,7 +1,9 @@
 <template>
   <div class="new-test">
-    
-        <label for="name" id="label-name">Username : </label>
+<label
+for="name"
+class="label-name"
+>Username : </label>
         <input
           v-model="username"
           required
@@ -10,30 +12,45 @@
           id="name"
           name="name"
           placeholder="Nom du compte"
-        />
-        <label for="name"  id="label-name">Password : </label>
+        >
+        <label
+for="name"
+class="label-name"
+>Password : </label>
         <input
           v-model="password"
           required
           maxlength="50"
           type="password"
-          id="name"
+          id="password"
           name="name"
           placeholder="Password"
-        />
-        <label v-if="loged" for="name"  id="label-name">Vous êtes connecté ! </label>
-        <label  for="name"  id="label-name">{{status}}</label>
+        >
+        <label
+v-if="loged"
+for="name"
+class="label-name"
+>Vous êtes connecté ! </label>
+        <label
+for="name"
+class="label-name"
+>{{ status }}</label>
 
      
        
          
     
 
-    <a v-if="loged == false" href="#" @click="send">Envoyer</a>
+    <a
+v-if="loged == false"
+href="#"
+@click="send"
+>Envoyer</a>
   </div>
 </template>
 
 <script>
+/* eslint-disable*/
 export default {
   name: "LoginPage",
   data() {
@@ -48,7 +65,7 @@ export default {
   computed : {
     loged(){
       this.token = this.$store.state.account.user.token;
-      console.log("token "+ this.token);
+
       if(this.token != ""){
         this.$router.push({ name: "home" });
         return true;
@@ -69,7 +86,7 @@ export default {
         this.$store.dispatch("account/login",{username:this.username,password:this.password}).then(function(response){
           
         }).catch(function(err){
-          console.log(err);
+       
         })
         
         }

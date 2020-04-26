@@ -5,9 +5,9 @@ module.exports = {
   },
   extends: [
     "plugin:vue/recommended",
-    "plugin:prettier/recommended",
+    //"plugin:prettier/recommended",
     "eslint:recommended",
-    "prettier/vue",
+    //"prettier/vue",
   ],
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
@@ -20,8 +20,12 @@ module.exports = {
     "vue/v-bind-style": "off",
     "vue/attributes-order": "off",
     "vue/no-v-html": "off",
+    "vue/html-indent": "off",
+    "vue/no-side-effects-in-computed-properties":"off",
+    "vue/no-unused-vars":"off",
   },
   parserOptions: {
     parser: "babel-eslint",
   },
+  
 };

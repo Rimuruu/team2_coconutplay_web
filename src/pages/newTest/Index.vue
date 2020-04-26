@@ -3,7 +3,10 @@
     <div class="part">
       <fieldset>
         <legend>LE JEU</legend>
-        <label for="name" id="label-name">Nom : </label>
+        <label 
+        for="name" 
+        id="label-name"
+        >Nom :</label>
         <input
           required
           v-model="game.name"
@@ -12,20 +15,32 @@
           id="name"
           name="name"
           placeholder="Nom du jeu"
-        />
+        >
 
-        <label for="category">Catégorie : </label>
-        <select required v-model="game.category" id="category" name="category">
-          <option v-for="(category, index) in categories" v-bind:key="index" :value="category">
-            {{ category.toUpperCase() }}
-          </option>
+        <label for="category">Catégorie :</label>
+        <select
+required
+v-model="game.category"
+id="category"
+name="category"
+>
+          <option
+            v-for="(category, index) in categories"
+            v-bind:key="index"
+            :value="category"
+          >
+{{ category.toUpperCase() }}
+</option>
         </select>
       </fieldset>
     </div>
     <div class="part">
       <fieldset class="data-article">
         <legend>LE TEST</legend>
-        <label for="title" id="label-title">Titre : </label>
+        <label
+for="title"
+id="label-title"
+>Titre :</label>
         <input
           required
           v-model="game.title"
@@ -34,9 +49,12 @@
           id="title"
           name="title"
           placeholder="Titre du test"
-        />
+        >
 
-        <label for="image" id="label-image">Image : </label>
+        <label
+for="image"
+id="label-image"
+>Image :</label>
         <input
           required
           v-model="game.imageUrl"
@@ -44,9 +62,12 @@
           id="image"
           name="image"
           placeholder="URL de l'image"
-        />
+        >
 
-        <label for="author" id="label-author">Auteur : </label>
+        <label
+for="author"
+id="label-author"
+>Auteur :</label>
         <input
           required
           v-model="game.author"
@@ -55,7 +76,7 @@
           id="author"
           name="author"
           placeholder="John Doe"
-        />
+        >
 
         <label for="write-test">Rédaction du test :</label>
         <textarea
@@ -65,26 +86,52 @@
           name="write-test"
           rows="15"
           cols="23"
-        >
-        </textarea>
+        />
 
-        <label for="grade" id="label-grade">Note : </label>
-        <select required v-model="game.grade" id="grade" name="grade">
-          <option v-for="i in 100" :key="i" :value="i">{{ i }}</option>
+        <label
+for="grade"
+id="label-grade"
+>Note :</label>
+        <select
+required
+v-model="game.grade"
+id="grade"
+name="grade"
+>
+          <option
+v-for="i in 100"
+:key="i"
+:value="i"
+>
+{{ i }}
+</option>
         </select>
-        <label id="label-grade">Visibilité : </label>
-        <select required v-model="game.visibility" id="visibility" name="visibility">
-          <option value="public">Public</option>
-          <option value="private">Private</option>
+        <label id="label-grade">Visibilité :</label>
+        <select
+required
+v-model="game.visibility"
+id="visibility"
+name="visibility"
+>
+          <option value="public">
+Public
+</option>
+          <option value="private">
+Private
+</option>
         </select>
       </fieldset>
     </div>
 
-    <a href="#" @click="send">Envoyer</a>
+    <a
+href="#"
+@click="send"
+>Envoyer</a>
   </div>
 </template>
 
 <script>
+/* eslint-disable*/
 export default {
   name: "NewTestIndex",
   data() {

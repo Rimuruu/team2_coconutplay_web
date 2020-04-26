@@ -1,7 +1,11 @@
 <<<<<<< HEAD
-# Pitaya Play
+# Coconut Play
 
-Exercice pratique du cours 8
+Projet de Fin de session
+
+Antoine Renciot
+Rémi Barbier
+Romain Lechartier
 
 ### Installation
 

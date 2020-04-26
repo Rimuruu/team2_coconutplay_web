@@ -1,80 +1,108 @@
 <template>
   <div class="new-test">
-    
-        <label for="name" id="label-name">Username : </label>
-        <input
-          v-model="username"
-          required
-          maxlength="50"
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Nom du compte"
-        />
-        <label for="name"  id="label-name">Password : </label>
-        <input
-          v-model="password"
-          required
-          maxlength="50"
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Password"
-        />
-        <label for="name"  id="label-name">Email : </label>
-        <input
-          v-model="email"
-          required
-          maxlength="50"
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Email"
-        />
-        <label for="name"  id="label-name">Nom : </label>
-        <input
-          v-model="name"
-          required
-          maxlength="50"
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Nom"
-        />
-        <label for="name"  id="label-name">Prénom : </label>
-        <input
-          v-model="surname"
-          required
-          maxlength="50"
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Prenom"
-        />
-        <label for="name"  id="label-name">Date de naissance: </label>
-        <input
-          v-model="birthdate"
-          required
-          maxlength="50"
-          type="date"
-          id="name"
-          name="name"
-        
-        />
-        <label v-if="loged" for="name"  id="label-name">Vous êtes inscrit ! </label>
-        <label for="name"  id="label-name">{{status}} </label>
+    <label
+      for="username"
+      class="label-name"
+    >Username : </label>
+    <input
+      id="name"
+      v-model="username"
+      required
+      maxlength="50"
+      type="text"
+      name="name"
+      placeholder="Nom du compte"
+    >
+    <label
+      for="password"
+      class="label-name"
+    >Password : </label>
+    <input
+      id="password"
+      v-model="password"
+      required
+      maxlength="50"
+      type="text"
+      name="name"
+      placeholder="Password"
+    >
+    <label
+      for="email"
+      class="label-name"
+    >Email : </label>
+    <input
+      id="email"
+      v-model="email"
+      required
+      maxlength="50"
+      type="text"
+      name="name"
+      placeholder="Email"
+    >
+    <label
+      for="Nom"
+      class="label-name"
+    >Nom : </label>
+    <input
+      id="nom"
+      v-model="name"
+      required
+      maxlength="50"
+      type="text"
+      name="name"
+      placeholder="Nom"
+    >
+    <label
+      for="Prenom"
+      class="label-name"
+    >Prénom : </label>
+    <input
+      id="prenom"
+      v-model="surname"
+      required
+      maxlength="50"
+      type="text"
+      name="name"
+      placeholder="Prenom"
+    >
+    <label
+      for="Birthdate"
+      class="label-name"
+    >Date de naissance: </label>
+    <input
+      id="birthdate"
+      v-model="birthdate"
+      required
+      maxlength="50"
+      type="date"
+      name="name"
+    >
+    <label
+      v-if="loged"
+      for="inscrit"
+      class="label-name"
+    >Vous êtes inscrit ! </label>
+    <label
+      for="status"
+      class="label-name"
+    >{{ status }} </label>
 
      
        
          
     
 
-    <a v-if="loged == false" href="#" @click="send">Envoyer</a>
+    <a
+      v-if="loged == false"
+      href="#"
+      @click="send"
+    >Envoyer</a>
   </div>
 </template>
 
 <script>
 export default {
+  /* eslint-disable*/
   name: "RegisterPage",
   data() {
     return {
@@ -85,17 +113,16 @@ export default {
       surname : "",
       token : "",
       birthdate:"",
+      
     }
 
   },
   computed : {
     loged(){
       this.token = this.$store.state.account.user.token;
-      console.log("token "+ this.token);
       if(this.token != ""){
         this.$router.push({ name: "home" });
         return true;
-        
       }
       return false;
     },
@@ -107,7 +134,7 @@ export default {
   },
   methods :  {
     async send(e){
-      console.log("send");
+
       if(this.username != "" || this.password != "" || this.email != ""){
         var response = await this.$store.dispatch("account/register",{username:this.username,password:this.password,email:this.email,name:this.name,surname:this.surname,birthdate:this.birthdate});
         
